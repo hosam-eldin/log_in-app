@@ -14,8 +14,14 @@ include "db.php";
 <body>
     
     <h2>WELCOME TO HOME PAGE</h2>
+    <p>
+        <a href="login.php">LOGIN</a>
+    </p>
 
-    <a href="login.php">LOGIN</a>
+    <p>
+        <a href="register.php">register</a>
+    </p>
+    
 
 </body>
 </html>
