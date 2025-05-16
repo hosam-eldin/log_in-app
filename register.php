@@ -3,6 +3,7 @@
 include("db.php");
 
 $error = "";
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -73,3 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 </body>
 </html>
+
+<?php
+mysqli_close($conn);
+?>
