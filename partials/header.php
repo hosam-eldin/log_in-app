@@ -1,5 +1,5 @@
 <?php
-
+include "functions.php" ;
 include "db.php";
 session_start();
 
@@ -13,4 +13,4 @@ session_start();
     <title>login app by sql and php</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="<?php echo GetPageClass(); ?>">
