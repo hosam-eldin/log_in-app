@@ -1,22 +1,33 @@
+<?php include "functions.php" ?>
+
+
+    <nav>
+      <ul>
+           <li>
+            <a class="<?php echo SetCurrentPage("index.php");?>" href="index.php">Home</a>
+          </li>
+
 <?php if(isset($_SESSION['logged_in'])&& $_SESSION['logged_in'] === true): ?>
-    <p>
-        <a href="admin.php">admin</a>
-    </p>
 
-        <p>
-            <a href="logout.php.">logout</a>
-        </p>
+         <li>
+           <a class="<?php echo SetCurrentPage("admin.php");?>" href="admin.php">Admin</a>
+          </li>
 
-    <?php else: ?>
+          <li>
+            <a class="<?php echo SetCurrentPage("logout.php");?>" href="logout.php">Logout</a>
+          </li>
 
-    <p>
-        <a href="login.php">LOGIN</a>
-    </p>
+          <?php else: ?>
 
-    <?php endif; ?>
+         <li>
+            <a class="<?php echo SetCurrentPage("register.php");?>" href="register.php">Register</a>
+         </li>
 
+         <li>
+          <a class="<?php echo SetCurrentPage("login.php");?>" href="login.php">Login</a>
+         </li>
 
+         <?php endif; ?>
 
-    <p>
-        <a href="register.php">register</a>
-    </p>
+        </ul>
+    </nav>
