@@ -1,5 +1,10 @@
 <?php
- include "partials/navigation.php"; 
+include_once "functions.php";
+include "partials/header.php";
+include "partials/navigation.php";
+ include_once "db.php";
+
+
  
 $error = "";
 
@@ -16,6 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $sql = "SELECT * FROM users WHERE username = '$username' LIMIT 1";
         $result = mysqli_query($conn, $sql);
 
+
         if(mysqli_num_rows($result) === 1){
             $error = "Username already exists, please choose another one";
         }else{
@@ -24,7 +30,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             $sql = " INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password_hash')";
             if(mysqli_query($conn, $sql)){
-                echo "DATA INSERTED";
+                $_SESSION["username"] = $username;
+                $_SESSION["logged_in"] = true;
+                header("location: admin.php");
+                exit;
             }else{
                 $error =  "DATA NOT INSERTED ,ERROR: ".mysqli_error($conn);
             }
@@ -34,39 +43,41 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
-<?php include "partials/header.php"; ?>
+
 <div class="container">
-<h2>REGISTER</h2>
 
-<?php if($error != ""): ?>
 
-<p style="color: red">
-    <?php echo $error; ?>
-    </p>
 
-<?php endif; ?>
+<div class="form-container">
 
-<form method="post" action="">
+    <form method="post" action="">
+        <h2>Create Your Account</h2>
+        <?php if($error != ""): ?>
 
-    <label for="username">USERNAME:</label><br>
-    <input type="text" name="username"  placeholder="Enter your username" required><br><br>
+            <p style="color: red">
+                <?php echo $error; ?>
+            </p>
 
-    <label for="email">EMAIL:</label><br>
-    <input type="email" name="email" required placeholder="Email address"><br><br>
+        <?php endif; ?>
+        <label for="username">USERNAME:</label>
+        <input value=" <?php echo isset($username)? $username :'';?>" type="text" name="username"  placeholder="Enter your username" required>
 
-    <label for="password">PASSWORD:</label><br>
-     <input type="password" name="password" required  placeholder="Password"><br><br>
+        <label for="email">EMAIL:</label>
+        <input value=" <?php echo isset($email)? $email:'';?>" type="email" name="email" required placeholder="Email address">
 
-    <label for="confirm_password">confirm password:</label><br>
-    <input type="password" name="confirm_password" required  placeholder="Confirm password"><br><br>
+        <label for="password">PASSWORD:</label>
+        <input type="password" name="password" required  placeholder="Password">
 
-    <input type="submit" value="register"  >
+        <label for="confirm_password">confirm password:</label>
+        <input type="password" name="confirm_password" required  placeholder="Confirm password">
 
-</form>
+        <input type="submit" value="register"  >
+
+    </form>
+</div>
+
 </div>
 
 <?php include "partials/footer.php"; ?>
+<?php mysqli_close($conn); ?>
 
-<?php
-mysqli_close($conn);
-?>

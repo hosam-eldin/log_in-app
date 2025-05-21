@@ -40,18 +40,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php include "partials/navigation.php";?>
 <div class="container">
-    <h2>LOGIN</h2>
 
-    <?php if($error != ""): ?>
 
-        <p style="color: red">
-            <?php echo $error; ?>
-        </p>
 
-    <?php endif; ?>
-
+<div class="form-container">
     <form method="post" action="">
+        <h2>login</h2>
+        <?php if($error != ""): ?>
 
+            <p style="color: red">
+                <?php echo $error; ?>
+            </p>
+
+        <?php endif; ?>
         <label for="username">USERNAME:</label><br>
         <input type="text" name="username"  placeholder="Enter your username" required><br><br>
 
@@ -65,6 +66,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="login"  >
 
     </form>
+</div>
+
 </div>
 
 

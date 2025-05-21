@@ -1,6 +1,6 @@
 <?php
-include "functions.php" ;
-include "db.php";
+include_once "functions.php" ;
+include_once "db.php";
 session_start();
 
 ?>
