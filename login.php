@@ -1,9 +1,6 @@
 <?php
-
-include("db.php");
-session_start();
-
-
+ include "partials/header.php"; 
+  
 if(isset($_SESSION['logged_in'])&& $_SESSION['logged_in'] === true){
     header("location: admin.php");
     exit;
@@ -40,26 +37,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-    <h2>LOGIN</h2>
 
-    <?php if($error != ""): ?>
+<?php include "partials/navigation.php";?>
+<div class="container">
 
-        <p style="color: red">
-            <?php echo $error; ?>
-        </p>
 
-    <?php endif; ?>
 
+<div class="form-container">
     <form method="post" action="">
+        <h2>login</h2>
+        <?php if($error != ""): ?>
 
+            <p style="color: red">
+                <?php echo $error; ?>
+            </p>
+
+        <?php endif; ?>
         <label for="username">USERNAME:</label><br>
         <input type="text" name="username"  placeholder="Enter your username" required><br><br>
 
@@ -73,8 +66,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="login"  >
 
     </form>
+</div>
+
+</div>
 
 
-    </body>
-    </html>
+   <?php include "partials/footer.php"; ?>
+   <?php mysqli_close($conn);?>
+
+   
+ 
 
