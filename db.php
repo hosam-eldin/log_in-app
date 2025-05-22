@@ -1,9 +1,17 @@
 <?php
 
 $conn = mysqli_connect("localhost", "root", "","login_app");
-if (!$conn) {
-    echo "Error: " . mysqli_connect_error();
+
+function check_query( $result)
+{
+
+    if(!$result){
+        return "Erorr:" . mysqli_error($conn);
+
+    }
+    return true;
 }
+
 
 
 

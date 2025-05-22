@@ -1,8 +1,8 @@
 <?php
  include "partials/header.php"; 
   
-if(isset($_SESSION['logged_in'])&& $_SESSION['logged_in'] === true){
-    header("location: admin.php");
+if(is_user_logged_in()){
+    redirect("admin.php)");
     exit;
 }
 
