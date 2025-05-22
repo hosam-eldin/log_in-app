@@ -1,5 +1,14 @@
 <?php
 
+function is_user_logged_in(){
+    return isset($_SESSION["logged_in"])&&$_SESSION["logged_in"]===true;
+}
+
+function redirect($location){
+    header("location: admin.php");
+    exit;
+}
+
 function GetCurrentPage ($page_name) {
     $current_page = basename($_SERVER['PHP_SELF']);
     return  ($current_page === $page_name)? "active" : "";
@@ -15,6 +24,13 @@ function UserExists ($conn,$username) {
     return mysqli_num_rows($result) > 0;
 
 }
+
+function full_month_date($date)
+{
+    return date('F j', strtotime($date));
+}
+
+
 
 ?>
 
